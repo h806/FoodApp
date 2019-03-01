@@ -74,6 +74,8 @@ public class FoodDetailActivity extends AppCompatActivity {
         if(getIntent()!=null){
             foodId = getIntent().getStringExtra("FoodId");
 
+            Toast.makeText(FoodDetailActivity.this, foodId, Toast.LENGTH_SHORT).show();
+
             if (!foodId.isEmpty()){
 
                 getDetailsFood(foodId);

@@ -76,13 +76,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder>{
 
         int price = (Integer.parseInt(listData.get(position).getPrice()))*(Integer.parseInt(listData.get(position).getQuantity()));
         holder.txtPrice.setText(fmt.format(price));
-
-        Toast.makeText(context,listData.get(position).getProductName(),Toast.LENGTH_SHORT).show();
         holder.txtCartName.setText(listData.get(position).getProductName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listData.size();
     }
 }
