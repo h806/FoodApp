@@ -58,8 +58,8 @@ public class Home extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(Home.this,Cart.class);
+                startActivity(intent);
             }
         });
 
@@ -90,25 +90,25 @@ public class Home extends AppCompatActivity
 
         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
 
+            @Override
+            protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
+
+                viewHolder.txtMenuName.setText(model.getName());
+                Picasso.get().load(model.getImage()).into(viewHolder.imageView);
+
+                viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
-                    protected void populateViewHolder(MenuViewHolder viewHolder, Category model, int position) {
+                    public void onClick(View view, int position, boolean isLongClick) {
 
-                        viewHolder.txtMenuName.setText(model.getName());
-                        Picasso.get().load(model.getImage()).into(viewHolder.imageView);
-
-                        viewHolder.setItemClickListener(new ItemClickListener() {
-                            @Override
-                            public void onClick(View view, int position, boolean isLongClick) {
-
-                                //get category id and send to new activity
-                                Intent i = new Intent(Home.this,FoodListActivity.class);
-                                // becuse categoryId is key, so we just get key of this item
-                                i.putExtra("CategoryID",adapter.getRef(position).getKey());
-                                startActivity(i);
-                            }
-                        });
+                        //get category id and send to new activity
+                        Intent i = new Intent(Home.this,FoodListActivity.class);
+                        // becuse categoryId is key, so we just get key of this item
+                        i.putExtra("CategoryID",adapter.getRef(position).getKey());
+                        startActivity(i);
                     }
-                };
+                });
+            }
+        };
         recycler_menu.setAdapter(adapter);
     }
 

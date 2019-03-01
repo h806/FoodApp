@@ -49,7 +49,7 @@ public class SigninActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                         //check if user not exist in database
+                        //check if user not exist in database
                         if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
 
                             progressDialog.dismiss();

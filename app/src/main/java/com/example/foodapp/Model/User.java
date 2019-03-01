@@ -6,8 +6,8 @@ public class User {
     private String Password;
     private String Name;
 
-    public User(String phone, String password, String name) {
-        Phone = phone;
+    public User(String name, String password) {
+
         Password = password;
         Name = name;
     }

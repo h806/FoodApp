@@ -47,8 +47,9 @@ public class FoodListActivity extends AppCompatActivity {
 
             if (!categoryId.isEmpty()) {
                 loadListFood(categoryId.trim());
+                Toast.makeText(FoodListActivity.this, categoryId, Toast.LENGTH_SHORT).show();
             }
-            }
+        }
     }
 
     private void loadListFood(String categoryId) {

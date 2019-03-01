@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Database extends SQLiteAssetHelper {
 
-    private static final String DB_NAME = "eatDB";
+    private static final String DB_NAME = "eatDB.db";
     private static final int    DB_VER  = 1;
 
 
@@ -24,7 +24,7 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"productName", "productId", "Quantity", "price", "discount"};
+        String[] sqlSelect = {"prodactName", "productId", "Quantity", "price", "discount"};
         String sqlTable = "orderDetail";
 
         qb.setTables(sqlTable);
@@ -35,7 +35,7 @@ public class Database extends SQLiteAssetHelper {
         if (cursor.moveToFirst()){
             do {
                 result.add(new Order(cursor.getString(cursor.getColumnIndex("productId")),
-                        cursor.getString(cursor.getColumnIndex("productName")),
+                        cursor.getString(cursor.getColumnIndex("prodactName")),
                         cursor.getString(cursor.getColumnIndex("Quantity")),
                         cursor.getString(cursor.getColumnIndex("price")),
                         cursor.getString(cursor.getColumnIndex("discount"))));
@@ -49,8 +49,8 @@ public class Database extends SQLiteAssetHelper {
     public void AddToCart(Order order){
 
         SQLiteDatabase db = getReadableDatabase();
-        String query  = String.format("INSERT INTO orderDetail(productId, productName,Quantity, price, discount)  " +
-                " VALUES('%s', '$s', '$s', '$s');",
+        String query  = String.format("INSERT INTO orderDetail(productId, prodactName,Quantity, price, discount)  " +
+                        " VALUES('%s', '%s','%s','%s','%s');",
                 order.getProductId(),
                 order.getProductName(),
                 order.getQuantity(),
@@ -59,7 +59,7 @@ public class Database extends SQLiteAssetHelper {
         db.execSQL(query);
     }
 
-    public void CleanCart(Order order){
+    public void CleanCart(){
 
         SQLiteDatabase db = getReadableDatabase();
         String query  = String.format("DELETE FROM orderDetail");

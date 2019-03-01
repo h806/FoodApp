@@ -54,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         }else {
                             progressDialog.dismiss();
-                            User user = new User(edtName.getText().toString(),edtPass.getText().toString(),edtPhone.getText().toString());
+                            User user = new User(edtName.getText().toString(),edtPass.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(SignUpActivity.this, "شماره تلفن شما ثبت شد", Toast.LENGTH_SHORT).show();
                             finish();

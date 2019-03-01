@@ -52,6 +52,8 @@ public class FoodDetailActivity extends AppCompatActivity {
         collapsingToolbarLayout = findViewById(R.id.collapsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar_);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar_);
+        btnCart = findViewById(R.id.btnCart);
+        elegantNumberButton = findViewById(R.id.number_button);
 
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +86,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         foods.child(foodId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             currentFood = dataSnapshot.getValue(Food.class);
+                currentFood = dataSnapshot.getValue(Food.class);
 
                 //get image
                 Picasso.get().load(currentFood.getImage()).into(foodImage);
